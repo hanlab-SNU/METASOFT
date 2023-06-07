@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="description" content="forest plot" />
+<meta name="description" content="PM plot" />
+<meta name="description" content="PM-plot" />
+<meta name="description" content="PMPlot" />
+<meta name="description" content="Metasoft" />
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="meta.css" type="text/css" />
+<title>METASOFT/ForestPMPlot</title>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-22950497-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<link rel="shortcut icon" href="http://www.cs.ucla.edu/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">METASOFT <p>
+ForestPMPlot
+</div>
+<div class="menu-item"><a href="index.html" class="current">Home</a></div>
+<div class="menu-item"><a href="index.html#download">Download</a></div>
+<div class="menu-item"><a href="index.html#version">Version/bug&nbsp;info</a></div>
+<div class="menu-item"><a href="index.html#guide">User's&nbsp;guide</a></div>
+<div class="menu-item"><a href="index.html#formatconverter">Format&nbsp;converter</a></div>
+<div class="menu-item"><a href="index.html#interpretation">Interpretation</a></div>
+<div class="menu-item"><a href="index.html#gxeinterpretation">GxE Interpretation</a></div>
+<div class="menu-item"><a href="index.html#publication">Publication</a></div>
+<div class="menu-item"><a href="index.html#contact">Contact</a></div>
+</td>
+<td id="layout-content">
+<!-- <h1><div id="toptitle">METASOFT</div></h1> -->
+<div id="toptitle"><h1>METASOFT/ForestPMPlot</h1></div>
+<h3 class="subtitle" style="color: purple;">
+  This is a mirror site of METASOFT site (<a href="https://genetics.cs.ucla.edu/meta">genetic.cs.ucla.edu/meta</a>). 
+  Because the original site has access problem from some countries, we provide this mirror site.
+</h3>
+
+<div id="subtitle">
+<strong>METASOFT</strong> is a free, 
+open-source meta-analysis software tool for 
+genome-wide association study analysis,
+designed to perform 
+a range of basic and advanced meta-analytic methods 
+in an efficient manner. 
+</div>
+
+<div id="subtitle">
+<strong>ForestPMPlot</strong> is a free,
+open-source
+a python-interfaced R package tool for analyzing the heterogeneous studies in meta-analysis by visualizing the effect size differences between studies. 
+The resulting plot can facilitate the better understanding of heterogeneous genetic effects on the phenotype in different study conditions.
+<!--
+ForestPMplot is specifically designed for facilitating the analysis of the effect size differences between studies by visualizing and identifying the existence of the effects.
+-->
+</div>
+
+
+<!--
+
+<div class="infoblock">
+<div class="blocktitle"><em>NEWS</em></div>
+<div class="blockcontent">
+<ul>
+<li>
+  11/4/2013 : New method for correlated input will soon to be posted .. thanks for waiting!<br/>d
+(Buhm Han, Jae Hoon Sul, Eleazar Eskin, Paul I. W. de Bakker, Soumya Raychaudhuri. "A general framework for meta-analyzing dependent studies with overlapping subjects in association mapping." http://arxiv.org/abs/1304.8045. 2013.)
+<!--   3-12-2013 : Many recent studies are using our New RE method for their primary and secondary analysis !! -->
+<!-- <ul> -->
+
+<!-- <li> Chen et al., <em>Molecular Psychiatry,</em> February 2013 </li> -->
+<!-- <li> Nyholt et al., <em>Nature Genetics,</em> October 2012 </li> -->
+<!-- <li> Kiryluk et al., <em>PLoS Genetics,</em> June 2012 </li> -->
+<!-- <li> Perry et al., <em>PLoS Genetics,</em> May 2012 </li> -->
+<!-- <li> Stein et al., <em>Nature Genetics,</em> April 2012 </li> -->
+<!-- <li> Cho et al., <em>Human Molecular Genetics,</em> February 2012 </li> -->
+<!-- </ul> -->
+<!-- <li>  -->
+<!-- 8-21-2012 : PLINK format converter (PLINK .assoc files &rarr; <strong>METASOFT</strong> format) is up!  -->
+<!-- </li> -->
+</li>
+</ul>
+</div></div>
+
+
+<p><a name="overview"></a></p>
+<h2>Overview</h2>
+<strong>METASOFT</strong> provides the following methods:
+<dl>
+<dt>Fixed Effects model (FE)</dt>
+<dd>Fixed effects model based on inverse-variance-weighted effect size.</dd>
+<dt>Random Effects model (RE)</dt>
+<dd>Conventional random effects model based on inverse-variance-weighted effect size
+(very conservative). </dd>
+<dt> Han and Eskin's Random Effects model (RE2)</dt>
+<dd> 
+New random effects model optimized to detect associations under heterogeneity. (Han and Eskin, AJHG 2011)</dd>
+<dt> Binary Effects model (BE)</dt>
+<dd> 
+New random effects model optimized to detect associations  when some studies have an effect and some studies do not. (Han and Eskin, PLoS Genetics 2012)</dd>
+</dl>
+<strong>METASOFT</strong> provides the following estimates:
+</dl>
+<dt>Summary effect size estimates</dt>
+<dd>Beta and standard errors for both fixed effects model and random effects model.</dd>
+<dt>Heterogeneity estimates</dt>
+<dd>Cochran's Q statistic and its p-value, and I<sup>2</sup></dd>
+<dt>M-values</dt>
+<dd>Posterior probability that an effect exists in each study. (Han and Eskin, PLoS Genetics 2012)</dd>
+</dl>
+
+<p>
+<p>
+<p>
+<p>
+
+<strong>ForestPMPlot</strong> is a visualization tool. The resulting plot 
+consists of the following components:
+<dl>
+<dt>Forest Plot</dt>
+<dd> For each study, it displays p-value, study name, log odds ratio and its standard error and summary statistic. </dd>
+<dt>m-value</dt>
+<dd>
+m-value is the posterior probability that the effect exists
+in each study.
+m-values have the following interpretations.
+<ul>
+<li><p>Small m-value (e.g. &lt; 0.1): The study is predicted to not have an effect.</p>
+</li>
+<li><p>Large m-value (e.g. &gt; 0.9): The study is predicted to have an effect.</p>
+</li>
+<li><p>Otherwise: It is ambiguous to make a prediction.</p>
+</li>
+</ul>
+m-value is estimated utilizing cross-study information (Han and Eskin, 2012
+<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1002555">Link</a>).
+</dd>
+<dt>PM Plot</dt>
+<dd>
+PM-Plot visualizes the m-value of each study along with its p-value.
+The X-axis of the PM-Plot represents the m-value between 0 and 1 and the
+Y-axis represents the statistical significance, −log10(p-value).
+PM-Plot allows us to predict which study have an effect and which study does not have an effect.
+The dot size represents the study sample size.
+<!--ForestPMPlot automatically places the study names (numbers corresponding to the actual names in the forest plot) to minimize the overlap between labels.-->
+ </dd>
+</dl>
+<p><img src="images/apoa2_small.jpg" width="80%" height="80%" border=0></p>
+
+
+
+
+
+<p><a name="download"></a></p>
+<h2>Download</h2>
+<ul>
+<li><p><a href="../meta/repository/2.0.1/Metasoft.zip"
+onClick="javascript: pageTracker._trackPageview('/downloads/zipfile');">
+Metasoft.zip
+</a> 
+containing the followings,</p>
+<ul>
+<li><p>Metasoft.jar (java archive package file)</p>
+</li>
+<li><p>HanEskinPvalueTable.txt (tabulated p-value file required to perform RE2)</p>
+</li>
+<li><p>example.txt (example meta-analysis data consisting of 3 studies)</p>
+</li>
+<li><p>README</p>
+</li>
+<li><p>LICENSE</p>
+</li>
+<li><p>plink2metasoft.py (PLINK format converter; PLINK .assoc files &rarr; <strong>METASOFT</strong> format) </p>
+</li>
+<li><p>plink2metasoft_subroutine.R (a subroutine file used by format converter) </p>
+</li>
+</ul>
+
+</li>
+</ul>
+<ul>
+<li><p><a href="repository/2.0.0/Metasoft_src.zip"
+onClick="javascript: pageTracker._trackPageview('/downloads/sourcecode');"
+>
+Metasoft_src.zip 
+<p>Optional Java source code files (only if you need)</p>
+</a></p>
+</li>
+</ul>
+
+
+<ul>
+<li><p><a href="../ForestPMPlot/repository/1.0.3/ForestPMPlot.zip" 
+onClick="javascript: pageTracker._trackPageview('/downloads/zipfile');">
+ForestPMPlot.zip
+</a>
+containing the followings,</p>
+<ul>
+<li><p>pmplot.py (main python script)</p>
+</li>
+<li><p>forestpmplot.R (R ploting engine)</p>
+</li>
+<li><p>data/input.txt (a sample MetaSoft input file )</p>
+</li>
+<li><p>data/output.txt (a sample MetaSoft output file )</p>
+</li>
+<li><p>study.name.txt (a sample file containing a list of study names)</p>
+</li>
+<li><p>study.order.txt (a sample file containing a list of display indices )</p>
+</li>
+<li><p>run.sh (a sample running script for generating Apoa2.pdf )</p>
+</li>
+<li><p>Apoa2.pdf (a sample resulting ForestPMPlot )</p>
+</li>
+<li><p>README</p>
+</li>
+<li><p>LICENSE</p>
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+
+<p>You can <a href="http://lists.ucla.edu/cgi-bin/mailman/listinfo/metasoft">SUBSCRIBE to our mailing list</a>
+to be notified for any major updates and bug fixes.</p>
+<p><a name="version"></a></p>
+<h2>Version/bug info</h2>
+<ul>
+<h3>METASOFT</h3>
+<li><p>v2.0.1 (2012-08-21) PLINK format converter is added. </p>
+</li>
+<li><p>v2.0.0 (2012-02-15) M-values are computed using exact calculation. User interface has been changed.</p>
+</li>
+<li><p>v1.0.0 (2011-08-25) First major release. Bug fix.</p>
+</li>
+<li><p>v0.3.1 (2011-07-07) Bug fix. </p>
+</li>
+<li><p>v0.3.0 (2011-07-06) Bug fix. Binary effects model and M-values implemented.</p>
+</li>
+<li><p>v0.2.2 (2011-05-19) Bug fix.</p>
+</li>
+<li><p>v0.2.1 (2011-05-16) Small changes in output format.</p>
+</li>
+<li><p>v0.2.0 (2011-05-10) Bug fix. Genomic control method implemented.</p>
+</li>
+<li><p>v0.1.0 (2011-04-18) Initial prototype version deployed</p>
+</li>
+</ul>
+
+
+<br>
+
+<ul>
+<h3>ForestPMPlot</h3>
+<li><p>v1.0.3 (2015-05-13) Bug fix. </p>
+</li>
+<li><p>v1.0.2 (2015-03-16) Bug fix. </p>
+</li>
+<li><p>v1.0.1 (2014-10-24) Bug fix. </p>
+</li>
+<li><p>v1.0.0 (2014-08-12) First major release. </p>
+</li>
+</ul>
+
+
+
+<p><a name="guide"></a></p>
+<h2>User's guide</h2>
+<h3>METASOFT</h3>
+<p><tt>Important: User interface has been changed since v2.0.</tt></p>
+<ul>
+<li><p>Usage:<br /></p>
+</li>
+</ul>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+usage: java -jar Metasoft.jar [options]
+    -input &lt;FILE&gt;                       Input file (Required)
+    -output &lt;FILE&gt;                      Output file (default='out')
+    -log &lt;FILE&gt;                         Log file (default='log')
+    -pvalue_table &lt;FILE&gt;                Pvalue table file (default='HanEskinPvalueTable.txt')
+    -lambda_mean &lt;FLOAT&gt;                (Random Effects) User-specified lambda for mean effect part
+                                        (default=1.0)
+    -lambda_hetero &lt;FLOAT&gt;              (Random Effects) User-specified lambda for heterogeneity
+                                        part (default=1.0)
+    -binary_effects                     Compute binary effects model p-value (default=false)
+    -binary_effects_sample &lt;INT&gt;        (Binary effects) Number of importance sampling samples
+                                        (default=1,000)
+    -binary_effects_p_thres &lt;FLOAT&gt;     (Binary effects) P-value threshold determining if we will
+                                        use large number of samples (default=1E-4)
+    -binary_effects_large &lt;INT&gt;         (Binary effects) Large number of importance sampling samples
+                                        for p-values above threshold (default=100,000)
+    -mvalue                             Compute m-value (default=false)
+    -mvalue_method &lt;METHOD_NAME&gt;        Which method to use to calculate m-value between 'exact' and
+                                        'mcmc' (default=exact)
+    -mvalue_p_thres &lt;FLOAT&gt;             Compute m-values only for SNPs whose FE or RE2 p-value is
+                                        below this threshold (default=1E-7)
+    -mvalue_prior_beta &lt;ALPHA BETA&gt;     Alpha and Beta value for Beta dist prior
+                                        Betadist(alpha,beta) for existence of effect
+                                        (default=1.0,1.0)
+    -mvalue_prior_sigma &lt;FLOAT&gt;         Sigma value for normal prior N(0, sigma^2) for effect
+                                        (default=0.2)
+    -mcmc_sample &lt;INT&gt;                  (MCMC) Number of samples (default=10,000)
+    -mcmc_burnin &lt;INT&gt;                  (MCMC) Number of burn-in (default=1,000)
+    -mcmc_max_num_flip &lt;INT or FLOAT&gt;   (MCMC) Usual move is flipping N bits where N ~
+                                        U(1,max_num_flip). If an integer value i &gt;= 1 is given,
+                                        max_num_flip = i. If a float value 0 &lt; k &lt; 1 is given,
+                                        max_num_flip = k * #studies. (default=0.1)
+    -mcmc_prob_random_move &lt;FLOAT&gt;      (MCMC) Probability that a complete randomization move is
+                                        suggested (default=0.01)
+    -seed &lt;INT&gt;                         Random number generator seed (default=0)
+    -verbose                            Print RSID verbosely per every 1,000 SNPs (default=false)
+    -help                               Print help
+</pre></div></div>
+<div class="infoblock">
+<div class="blocktitle">Binary Effects Model</div>
+<div class="blockcontent">
+<p>BE is another kind of random effects model assuming that the effects either exists or not in the studies.
+Our simulations show that BE is often more powerful than RE2.
+However, BE requires importance sampling to calculate p-value and is slower than RE2.
+To use BE, use option <tt>-binary_effects</tt>.
+We implemented an adaptive sampling that performs BE with smaller number of samples first (<tt>-binary_effects_sample</tt> option),
+and if the calculated p-value exceeds a threshold (<tt>-binary_effects_p_thres</tt> option),
+then a larger number of samples are used for higher accuracy (<tt>-binary_effects_large</tt> option).</p>
+</div></div>
+<div class="infoblock">
+<div class="blocktitle">M-value</div>
+<div class="blockcontent">
+<p>To compute m-values, use option <tt>-mvalue</tt>.
+M-values require two priors: Beta distribution prior for the presence/absence of effect
+(specified by <tt>-mvalue_prior_beta</tt> option),
+and normal distribution prior for the effect size
+(<img class="eq" src="eqs/4433396726089002847-130.png" alt="N(0,sigma^2)" style="vertical-align: -5px" /> where <img class="eq" src="eqs/7347888844222465669-130.png" alt="sigma" style="vertical-align: -1px" /> is specified by <tt>-mvalue_prior_sigma</tt> option).
+The default for Beta distribution prior is uniform distribution (<img class="eq" src="eqs/3988377981152510166-130.png" alt="alpha=1.0" style="vertical-align: -1px" /> and <img class="eq" src="eqs/3962811144691838643-130.png" alt="beta=1.0" style="vertical-align: -4px" />)
+and the default for <img class="eq" src="eqs/7347888844222465669-130.png" alt="sigma" style="vertical-align: -1px" /> is 0.2. 
+Since we assume a normal prior for effect size, for quantitative traits, the value of <img class="eq" src="eqs/7347888844222465669-130.png" alt="sigma" style="vertical-align: -1px" />
+has to be chosen carefully considering the unit of the data.
+One can choose a value based on the data in an empirical Bayes style,
+or a rough and ad-hoc approach is just using the default value (0.2) designed for dichotomous traits.</p>
+<p>The computation time is exponential to the number of studies.
+If the number of studies is small (e.g. &lt;10), an exact calculation is feasible (<tt>-mvalue_method exact</tt> option).
+If the number of studies is large, MCMC should be used (<tt>-mvalue_method mcmc</tt> option).
+The user can specify the number of burnin (<tt>-mcmc_burnin</tt>) and the number of samples (<tt>-mcmc_sample</tt>).
+The MCMC move is flipping the existence of effect for N studies where N is sampled from 
+Uniform(1, max_num_flip) where max_num_flip is specified with <tt>-mcmc_max_num_flip</tt> option.</p>
+</div></div>
+<ul>
+<li><p>Input File format:<br />
+Rows are SNPs. <br />
+1st column is RSID.<br />
+2nd and 3rd columns are effect size (beta) and its standard error of study 1.<br />
+4th and 5th columns are effect size (beta) and its standard error of study 2.<br />
+6th and 7th columns are effect size (beta) and its standard error of study 3.<br />
+and so on&hellip;<br />
+Please write &ldquo;NA&rdquo; for missing beta and its standard error.</p>
+</li>
+</ul>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+rsAAAAAA study1beta study1stderr study2beta study2stderr study3beta study3stderr
+rsBBBBBB study1beta study1stderr study2beta study2stderr study3beta study3stderr
+rsCCCCCC study1beta study1stderr study2beta study2stderr study3beta study3stderr
+</pre></div></div>
+<ul>
+<li><p>Example Running Command:<br /></p>
+</li>
+</ul>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+java -jar Metasoft.jar -input example.txt
+</pre></div></div>
+<ul>
+<li><p>Output File: <br />
+The columns in output file are as follows</p>
+</li>
+</ul>
+<table>
+<tr class="r1"><td class="c1">Column Num. </td><td class="c2"> Column name </td><td class="c3"> Description</td></tr>
+<tr class="r2"><td class="c1">1 </td><td class="c2"> RSID </td><td class="c3"> SNP rsID </td></tr>
+<tr class="r3"><td class="c1">2 </td><td class="c2"> NUM_STUDY </td><td class="c3"> Number of studies used in meta-analysis for the SNP </td></tr>
+<tr class="r4"><td class="c1">3 </td><td class="c2"> PVALUE_FE </td><td class="c3"> FE P-value </td></tr>
+<tr class="r5"><td class="c1">4 </td><td class="c2"> BETA_FE </td><td class="c3"> Estimated Beta under FE </td></tr>
+<tr class="r6"><td class="c1">5 </td><td class="c2"> STD_FE </td><td class="c3"> Standard error of BETA_FE</td></tr>
+<tr class="r7"><td class="c1">6 </td><td class="c2"> PVALUE_RE </td><td class="c3"> RE P-value </td></tr>
+<tr class="r8"><td class="c1">7 </td><td class="c2"> BETA_RE </td><td class="c3"> Estimated Beta under RE </td></tr>
+<tr class="r9"><td class="c1">8 </td><td class="c2"> STD_RE </td><td class="c3"> Standard error of BETA_RE</td></tr>
+<tr class="r10"><td class="c1">9 </td><td class="c2"> PVALUE_RE2 </td><td class="c3"> RE2 P-value </td></tr>
+<tr class="r11"><td class="c1">10 </td><td class="c2"> STAT1_RE2 </td><td class="c3"> RE2 statistic mean effect part</td></tr>
+<tr class="r12"><td class="c1">11 </td><td class="c2"> STAT2_RE2 </td><td class="c3"> RE2 statistic heterogeneity part</td></tr>
+<tr class="r13"><td class="c1">12 </td><td class="c2"> PVALUE_BE </td><td class="c3"> BE P-value (&ldquo;NA&rdquo; if <tt>-binary_effects</tt> option is not used) </td></tr>
+<tr class="r14"><td class="c1">13 </td><td class="c2"> I_SQUARE </td><td class="c3"> I-square heterogeneity statistic</td></tr>
+<tr class="r15"><td class="c1">14 </td><td class="c2"> Q </td><td class="c3"> Cochran's Q statistic </td></tr>
+<tr class="r16"><td class="c1">15 </td><td class="c2"> PVALUE_Q </td><td class="c3"> Cochran's Q statistic's p-value </td></tr>
+<tr class="r17"><td class="c1">16 </td><td class="c2"> TAU_SQUARE </td><td class="c3"> Tau-square heterogeneity estimator of DerSimonian-Laird </td></tr>
+<tr class="r18"><td class="c1">17 &hellip; 17+NUM_STUDY-1 </td><td class="c2"> PVALUES_OF_STUDIES </td><td class="c3"> P-values of each single studies </td></tr>
+<tr class="r19"><td class="c1">17+NUM_STUDY &hellip; 17+2*NUM_STUDY-1</td><td class="c2"> MVALUES_OF_STUDIES </td><td class="c3"> M-values of each single studies (&ldquo;NA&rdquo; if <tt>-mvalue</tt> option is not used)
+</td></tr></table>
+<p><br /></p>
+<ul>
+<li><p>Log File: <br />
+The data reported in log file are as follows</p>
+<ul>
+<li><p>Number of SNPs analyzed</p>
+</li>
+<li><p>Number of studies</p>
+</li>
+<li><p>Calculated genomic-control inflation factor for mean effect part of RE2 statistic <tt><img class="eq" src="eqs/5886870896251534432-130.png" alt="lambda_{rm Mean Effect}" style="vertical-align: -4px" /></tt></p>
+</li>
+<li><p>Calculated genomic-control inflation factor for heterogeneity part of RE2 statistic <tt><img class="eq" src="eqs/1332660369964033094-130.png" alt="lambda_{rm Heterogeneity}" style="vertical-align: -6px" /></tt></p>
+</li>
+</ul>
+
+</li>
+</ul>
+<div class="infoblock">
+<div class="blocktitle">How to correct for population structure</div>
+<div class="blockcontent">
+<p>We provide a simple method for correcting for population structure for RE2.<br />
+First, put all SNPs into a single file.<br />
+Then apply our software without using <tt>-lambda_mean</tt> or <tt>-lambda_hetero</tt> options.<br />
+Look at log file to see what are the inflation factors for both the mean effect
+part and heterogeneity part of RE2 statistic,
+which we denote <tt><img class="eq" src="eqs/5886870896251534432-130.png" alt="lambda_{rm Mean Effect}" style="vertical-align: -4px" /></tt> and <tt><img class="eq" src="eqs/1332660369964033094-130.png" alt="lambda_{rm Heterogeneity}" style="vertical-align: -6px" /></tt>.<br />
+Then, apply our software one more time using 
+the options <tt>-lambda_mean <img class="eq" src="eqs/5886870896251534432-130.png" alt="lambda_{rm Mean Effect}" style="vertical-align: -4px" /></tt> and <tt>-lambda_hetero <img class="eq" src="eqs/1332660369964033094-130.png" alt="lambda_{rm Heterogeneity}" style="vertical-align: -6px" /></tt>.</p>
+</div></div>
+<div class="infoblock">
+<div class="blocktitle">How to correct for population structure in each single study</div>
+<div class="blockcontent">
+<p>Often, the user wants to apply genomic control not only to the 
+meta-analysis p-values but also to each single study before 
+the user uses them in the meta-analysis.
+This can be easily done by, in the input file,
+increasing the standard errors by the square root of the 
+calculated inflation factor
+for each study.</p>
+</div></div>
+
+<br>
+
+<h3>ForestPMPlot</h3>
+
+<p><tt>Important Package Dependency :
+    <ul>
+    <li> R      :   library(plotrix) </li>
+    <li> python :   numpy  </li>
+    </ul>
+</tt></p>
+<!-- <ul>
+<li><p>Usage:<br /></p>
+</li>
+</ul> -->
+<p>Usage:<br /></p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+usage: python pmplot.py [meta_input] [meta_output] [study_name] [study_order] [rsid] [gene_name] [out_file]
+    [meta_input]                        Input file of METASOFT. <!--<a href="http://genetics.cs.ucla.edu/meta/">METASOFT LINK</a> -->
+    [meta_output]                       Output file of METASOFT. <!-- <a href="http://genetics.cs.ucla.edu/meta/">METASOFT LINK</a> -->
+    [study_name]                        File containing studynames. One study name per line. The order of the
+                                        study names should be matched with [meta_input] and [meta_output] files.
+    [study_order]                       File containing the display index of studies. One index per line.
+    [rsid]                              Rsid of a SNP to generate ForestPMPlot.
+    [gene_name]                         Implicated gene name for the SNP.
+    [out_file]                          ForestPMPlot file. (<tt>Format : pdf</tt>)
+</pre></div></div>
+
+
+
+
+
+<p><a name="formatconverter"></a></p>
+<h2>Format converter</h2>
+<ul>
+<li><p>Plink format converter usage:<br /></p>
+</li>
+</ul>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+python plink2metasoft.py outputfile plink_assoc_file1 plink_assoc_file2 plink_assoc_file3 ...
+</pre></div></div>
+<p> Our software converts multiple .assoc files from plink to the input format of <strong>METASOFT</strong>.
+  If .assoc files include both A1 and A2 columns, our converter can detect simple strand flips.
+  There are three output files: .meta file is the formatted file, .mmap file includes SNP map information,
+  and .log file includes log information
+  such as strand flipped SNPs, excluded SNPs, and reasons for exclusions.
+  Python and R must be installed in the system to use our converter.
+</p>
+<p><a name="interpretation"></a></p>
+<h2>Interpretation</h2>
+<p>If an associated SNP shows high heterogeneity, 
+interpreting the results is challenging.
+We provide a measure called M-value, the posterior probability that the effect exists
+in each study.
+M-values have the following interpretations.</p>
+<ul>
+<li><p>Small m-value (e.g. &lt; 0.1): The study is predicted to not have an effect.</p>
+</li>
+<li><p>Large m-value (e.g. &gt; 0.9): The study is predicted to have an effect.</p>
+</li>
+<li><p>Otherwise: It is ambiguous to make a prediction.</p>
+</li>
+</ul>
+<p>M-values can be plotted with p-values in a two-dimensional space, called PM-plot,
+which has the following interpretations.</p>
+<p><img src="images/pmplot_smallsize.jpg" border=0></p>
+
+<!--
+<p>P-M plot can complement the standard forest plot in the interpretation stage.
+Below is an example P-M plot of 
+Crohns disease data of
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/21102463">Franke et al.</a></p>
+<p><img src="images/Figure5_crohns_forest_small.png" border=0></p>
+<p>In this figure, WTCCC shows outlier behaviour of possibly no effect,
+which is not clearly visible in the forest plot and the p-value plot.</p>
+-->
+
+
+<p><a name="gxeinterpretation"></a></p>
+<h2>GxE Interpretation</h2>
+<!--
+<p>If an associated SNP shows high heterogeneity, 
+interpreting the results is challenging.
+We provide a measure called M-value, the posterior probability that the effect exists
+in each study.
+M-values have the following interpretations.</p>
+<ul>
+<li><p>Small m-value (e.g. &lt; 0.1): The study is predicted to not have an effect.</p>
+</li>
+<li><p>Large m-value (e.g. &gt; 0.9): The study is predicted to have an effect.</p>
+</li>
+<li><p>Otherwise: It is ambiguous to make a prediction.</p>
+</li>
+</ul>
+<p>
+-->
+Joint analysis of multiple studies with varying environmental conditions using a meta-analysis
+can provide unique opportunity to identify gene-by-environment interactions.
+Examining both forest plot and PM-plot allows us to easily hypothesize that
+there is a specific group of studies showing gene-by-environment interactions.
+For example, let's consider study 10-11 containing mouse C57BL/6 x DBA/2 F2 strains with homozygous
+deficiency in leptin receptor (db/db).
+In forest plot,
+effect size estimate from male study is much larger than that of female study, but
+standard error of the female effect size estimates is large so that it is not clear
+that the effect size of female study is zero.
+However the m-value prediction clearly shows the distinction between male and female studies,
+which suggest gene-by-sex interaction under the homozygous deficiency in leptin receptor (db/db)
+condition.
+
+</p>
+<p><img src="images/apoa2_small.jpg" width="80%" height="80%" border=0></p>
+<p> The above is an example ForestPMPlot of 17 HDL mouse studies from the paper of
+<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1004022">Kang et al.</a></p
+>
+
+
+
+
+
+
+
+<p><a name="publication"></a></p>
+<h2>Publication</h2>
+<ul>
+<li><p>If you use our software or refer to the new random effects model method, please cite</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Buhm Han and Eleazar Eskin, &ldquo;Random-Effects Model Aimed at Discovering Associations in Meta-Analysis of Genome-wide Association Studies&rdquo;, The American Journal of Human Genetics (2011) 88, 586-598.
+<a href="http://www.cell.com/AJHG/abstract/S0002-9297%2811%2900155-8">LINK</a></p>
+</div></div>
+<ul>
+<li><p>If you use m-values or the binary effects model method, please cite</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Buhm Han and Eleazar Eskin, &ldquo;Interpreting Meta-Analysis of Genome-wide Association Studies&rdquo;, In Press. PLoS Genetics (2012). (Manuscript available <a href="http://www.cs.ucla.edu/~buhan/papers/2012interpretation.pdf">here</a>)</p>
+</div></div>
+
+
+<ul>
+<li><p>If you want to refer the GxE interpretation, please cite</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Eun Yong Kang and Buhm Han and Nicholas Furlotte and Jong Wha J. Joo and Diana Shih and Richard C. Davis and Aldons J. Lusis and Eleazar Eskin, &ldquo;
+Meta-Analysis Identifies Gene-by-Environment Interactions as Demonstrated in a Study of 4,965 Mice &rdquo;, PLOS Genetics (2014) 10(1), e1004022.
+<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1004022">LINK</a></p>
+</div></div>
+
+
+
+<ul>
+<li><p>If you use our software to plot ForestPMPlot, please cite</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Eun Yong Kang and Buhm Han and Eleazar Eskin, &ldquo;
+ForestPMplot: a flexible tool for visualizing heterogeneity between studies in meta analysis&rdquo;, Submitted
+<!--<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1004022">LINK</a></p> -->
+</div></div>
+
+
+<ul>
+<li><p>If you refer multiple tissue eQTL method, please cite</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Jae Hoon Sul and Buhm Han and Chun Ye and Ted Choi and Eleazar Eskin, &ldquo;
+Effectively identifying eQTLs from multiple tissues by combining mixed model and meta-analytic approaches.&rdquo;, PLOS Genetics (2013) 9, e1003491.
+<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1003491">LINK</a>
+<a href="http://genetics.cs.ucla.edu/metatissue/index.html">Software</a>
+</p>
+</div></div>
+
+
+
+
+
+<p><a name="contact"></a>
+<h2>Contact</h2>
+<h3>METASOFT</h3>
+Buhm Han : 
+buhan (AT) cs.ucla.edu ,
+<a href="http://www.cs.ucla.edu/~buhan">http:<i></i>www.cs.ucla.du/~buhan</a> </p>
+<h3>ForestPMPlot</h3>
+Eun Yong Kang :
+ekang (AT) cs.ucla.edu
+
+
+
+
+<h2>Funding information</h2>
+<p>B.H. E.Y.K and E.E. are supported by National Science Foundation grants 0513612, 0731455, 0729049 and 0916676, and NIH grants K25-HL080079 and U01-DA024417. B.H. is supported by the Samsung Scholarship. This research was supported in part by the University of California, Los Angeles subcontract of contract N01-ES-45530 from the National Toxicology Program and National Institute of Environmental Health Sciences to Perlegen Sciences.</p>
+<div id="footer">
+Page generated 2014-08-13 21:12:00 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
